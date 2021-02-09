@@ -1,0 +1,23 @@
+{
+  "name": "littleamsterdam-server",
+  "version": "0.0.1",
+  "description": "Little Amsterdam GraphQL Server",
+  "main": "index.js",
+  "author": "Daniel Guglielmi",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon ./index.js",
+    "test": "node --trace-warnings ./index.js"
+  },
+  "dependencies": {
+    "apollo-server": "^2.19.2",
+    "aws-sdk": "^2.835.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "fs-capacitor": "3.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.14",
+    "nodemon": "^2.0.7",
+    "uuid": "^8.3.2"
+  }
+}
