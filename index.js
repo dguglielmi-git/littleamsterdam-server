@@ -15,7 +15,7 @@ function server() {
     typeDefs,
     resolvers,
     context: ({ req }) => {
-      console.log(req.headers);
+      
       const token = req.headers.authorization;
       if (token) {
         try {

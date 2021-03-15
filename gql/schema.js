@@ -14,6 +14,7 @@ const typeDefs = gql`
     password: String
     avatar: String
     createAt: String
+    roleName: String
   }
 
   type Token {

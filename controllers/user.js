@@ -35,6 +35,7 @@ async function register(input) {
   // Encriptar
   const salt = await bcryptjs.genSaltSync(10);
   newUser.password = await bcryptjs.hash(password, salt);
+  newUser.roleName = "user";
 
   try {
     const user = new User(newUser);
@@ -67,7 +68,7 @@ async function getUser(id, username) {
   if (id) user = await User.findById(id);
   if (username) user = await User.findOne({ username });
   if (!user) errorMsg(USUARIO_INEXISTENTE);
-
+  
   return user;
 }
 
