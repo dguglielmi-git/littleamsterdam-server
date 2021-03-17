@@ -4,19 +4,19 @@ const Follow = require("../models/follow");
 const awsUploadImage = require("../utils/aws-upload-image");
 const { v4: uuidv4 } = require("uuid");
 
-async function publish(file, ctx) {
+async function publish(file, album, ctx) {
   const { id } = ctx.user;
   const { createReadStream, mimetype } = await file;
   const extension = mimetype.split("/")[1];
   const fileName = `publication/${uuidv4()}.${extension}`;
   const fileData = await createReadStream();
 
-  console.log(ctx.user);
   try {
     const result = await awsUploadImage(fileData, fileName);
     const publication = new Publication({
       idUser: id,
       file: result,
+      idAlbum: album,
       typeFile: mimetype.split("/")[0],
       createAt: Date.now(),
     });
@@ -31,7 +31,6 @@ async function publish(file, ctx) {
       urlFile: "",
     };
   }
-  return null;
 }
 
 async function getPublications(username) {

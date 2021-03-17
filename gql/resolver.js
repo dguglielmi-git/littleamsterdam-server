@@ -3,12 +3,17 @@ const followController = require("../controllers/follow");
 const publicationController = require("../controllers/publication");
 const commentController = require("../controllers/comment");
 const likeController = require("../controllers/like");
+const albumController = require("../controllers/album");
 
 const resolvers = {
   Query: {
     // User
     getUser: (_, { id, username }) => userController.getUser(id, username),
     search: (_, { search }) => userController.search(search),
+
+    // Album
+    getAlbums: (_, { id }) => albumController.getAlbums(id),
+    countAlbums: (_, {idUser}) => albumController.countAlbums(idUser),
 
     // Follow
     isFollow: (_, { username }, ctx) =>
@@ -54,13 +59,18 @@ const resolvers = {
     deleteAvatar: (_, {}, ctx) => userController.deleteAvatar(ctx),
     updateUser: (_, { input }, ctx) => userController.updateUser(input, ctx),
 
+    // Album
+    addAlbum: (_, { input }, ctx) => albumController.addAlbum(input, ctx),
+    removeAlbum: (_, { idAlbum }) => albumController.removeAlbum(idAlbum),
+
     // Follow
     follow: (_, { username }, ctx) => followController.follow(username, ctx),
     unFollow: (_, { username }, ctx) =>
       followController.unFollow(username, ctx),
 
     // Publish
-    publish: (_, { file }, ctx) => publicationController.publish(file, ctx),
+    publish: (_, { file, album }, ctx) =>
+      publicationController.publish(file, album, ctx),
 
     // Comment
     addComment: (_, { input }, ctx) => commentController.addComment(input, ctx),
@@ -74,13 +84,13 @@ const resolvers = {
     // Not Likes
     addNotLike: (_, { idPublication }, ctx) =>
       likeController.addNotLike(idPublication, ctx),
-      deleteNotLike: (_, { idPublication }, ctx) =>
+    deleteNotLike: (_, { idPublication }, ctx) =>
       likeController.deleteNotLike(idPublication, ctx),
 
-      // Trash
-      addTrash: (_, { idPublication }, ctx) =>
+    // Trash
+    addTrash: (_, { idPublication }, ctx) =>
       likeController.addTrash(idPublication, ctx),
-      deleteTrash: (_, { idPublication }, ctx) =>
+    deleteTrash: (_, { idPublication }, ctx) =>
       likeController.deleteTrash(idPublication, ctx),
   },
 };

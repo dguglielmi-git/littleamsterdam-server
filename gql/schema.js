@@ -17,6 +17,13 @@ const typeDefs = gql`
     roleName: String
   }
 
+  type Album {
+    id: ID
+    title: String
+    picture: String
+    createAt: String
+  }
+
   type Token {
     token: String
   }
@@ -61,6 +68,10 @@ const typeDefs = gql`
     password: String!
   }
 
+  input AlbumInput {
+    title: String!
+  }
+
   input LoginInput {
     email: String!
     password: String!
@@ -98,6 +109,10 @@ const typeDefs = gql`
     # Comment
     getComments(idPublication: ID!): [Comment]
 
+    # Album
+    getAlbums(id: ID): [Album]
+    countAlbums(idUser: ID!): Int
+
     # Like
     isLike(idPublication: ID!): Boolean
     countLikes(idPublication: ID!): Int
@@ -115,12 +130,16 @@ const typeDefs = gql`
     deleteAvatar: Boolean
     updateUser(input: UserUpdateInput): Boolean
 
+    #Album
+    addAlbum(input: AlbumInput) : Album
+    removeAlbum(idAlbum: ID!): Boolean
+
     #Follow
     follow(username: String!): Boolean
     unFollow(username: String!): Boolean
 
     #Publish
-    publish(file: Upload): Publish
+    publish(file: Upload, album: String): Publish
 
     # Comment
     addComment(input: CommentInput): Comment

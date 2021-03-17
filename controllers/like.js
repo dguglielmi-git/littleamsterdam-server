@@ -146,6 +146,7 @@ async function countTrash(idPublication) {
     return result;
   } catch (error) {
     console.log(error);
+    return 0;
   }
 }
 

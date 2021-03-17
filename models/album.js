@@ -1,24 +1,21 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const PublicationSchema = Schema({
+const AlbumSchema = Schema({
+  title: {
+    type: String,
+    trim: true,
+    require: true,
+  },
   idUser: {
     type: mongoose.Schema.Types.ObjectId,
     require: true,
     ref: "User",
   },
-  idAlbum: {
-    type: String,
-    ref: "Album",
-  },
-  file: {
+  picture: {
     type: String,
     trim: true,
-    require: true,
-  },
-  typeFile: {
-    type: String,
-    trim: true,
+    default: "none",
   },
   createAt: {
     type: Date,
@@ -26,4 +23,4 @@ const PublicationSchema = Schema({
   },
 });
 
-module.exports = mongoose.model("Publications", PublicationSchema);
+module.exports = mongoose.model("Album", AlbumSchema);
