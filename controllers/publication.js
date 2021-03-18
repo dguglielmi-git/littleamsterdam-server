@@ -33,16 +33,24 @@ async function publish(file, album, ctx) {
   }
 }
 
-async function getPublications(username) {
+async function getPublications(username, idAlbum) {
   const user = await User.findOne({ username });
 
   if (!user) throw new Error("Usuario no encontrado.");
 
-  const publications = await Publication.find()
-    .where({ idUser: user._id })
-    .sort({ createAt: -1 });
+  if (idAlbum) {
+    const publications = await Publication.find()
+      .where({ idUser: user._id, idAlbum })
+      .sort({ createAt: -1 });
 
-  return publications;
+    return publications;
+  } else {
+    const publications = await Publication.find()
+      .where({ idUser: user._id })
+      .sort({ createAt: -1 });
+
+    return publications;
+  }
 }
 
 async function getPublicationsFolloweds(ctx) {

@@ -103,7 +103,7 @@ const typeDefs = gql`
     getNotFolloweds: [User]
 
     # Publication
-    getPublications(username: String!): [Publication]
+    getPublications(username: String!, idAlbum: String): [Publication]
     getPublicationsFolloweds: [FeedPublication]
 
     # Comment

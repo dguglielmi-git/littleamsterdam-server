@@ -23,8 +23,8 @@ const resolvers = {
     getNotFolloweds: (_, {}, ctx) => followController.getNotFolloweds(ctx),
 
     // Publication
-    getPublications: (_, { username }) =>
-      publicationController.getPublications(username),
+    getPublications: (_, { username, idAlbum }) =>
+      publicationController.getPublications(username, idAlbum),
     getPublicationsFolloweds: (_, {}, ctx) =>
       publicationController.getPublicationsFolloweds(ctx),
 
