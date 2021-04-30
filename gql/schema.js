@@ -1,8 +1,5 @@
 const { gql } = require('apollo-server');
 
-/*
-Creamos las definiciones de los tipos de datos a utilizar
-*/
 const typeDefs = gql`
 	type User {
 		id: ID

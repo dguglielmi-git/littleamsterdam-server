@@ -88,7 +88,7 @@ async function isLike(idPublication, ctx) {
     const result = await Like.findOne({ idPublication }).where({
       idUser: ctx.user.id,
     });
-    if (!result) throw new Error("No ha dado Like");
+    if (!result) throw new Error("Didn't click Like");
     return true;
   } catch (error) {
     console.log(error);
@@ -101,7 +101,7 @@ async function isNotLike(idPublication, ctx) {
     const result = await NotLike.findOne({ idPublication }).where({
       idUser: ctx.user.id,
     });
-    if (!result) throw new Error("No ha dado Not Like");
+    if (!result) throw new Error("Didn't click Not Like");
     return true;
   } catch (error) {
     console.log(error);
@@ -114,7 +114,7 @@ async function isTrash(idPublication, ctx) {
     const result = await Trash.findOne({ idPublication }).where({
       idUser: ctx.user.id,
     });
-    if (!result) throw new Error("No ha dado Trash");
+    if (!result) throw new Error("Didn't click Trash");
     return true;
   } catch (error) {
     console.log(error);

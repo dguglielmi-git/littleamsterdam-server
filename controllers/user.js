@@ -19,20 +19,20 @@ async function register(input) {
 	newUser.email = newUser.email.toLowerCase();
 	newUser.username = newUser.username.toLowerCase();
 
-	const MAIL_EN_USO = 'El email ya esta en uso';
-	const USUARIO_EN_USO = 'El nombre de usuario ya esta en uso';
+	const MAIL_EXISTS = 'The e-mail address is already taken.';
+	const USER_EXISTS = 'Username is already taken';
 
 	const { email, username, password } = newUser;
 
-	// Revisamos si el mail esta en uso
+	// Check if e-mail is taken
 	const foundEmail = await User.findOne({ email });
-	if (foundEmail) errorMsg(MAIL_EN_USO);
+	if (foundEmail) errorMsg(MAIL_EXISTS);
 
-	// Revisamos si el username esta en uso
+	// Check if Username is taken
 	const foundUsername = await User.findOne({ username });
-	if (foundUsername) errorMsg(USUARIO_EN_USO);
+	if (foundUsername) errorMsg(USER_EXISTS);
 
-	// Encriptar
+	// Crypt
 	const salt = await bcryptjs.genSaltSync(10);
 	newUser.password = await bcryptjs.hash(password, salt);
 	newUser.roleName = 'user';
@@ -48,7 +48,7 @@ async function register(input) {
 }
 
 async function login(input) {
-	const PASSWORD_ERROR = 'Error en el mail o contraseña';
+	const PASSWORD_ERROR = 'User or Password incorrect.';
 	const { email, password } = input;
 
 	const userFound = await User.findOne({ email: email.toLowerCase() });
@@ -63,11 +63,11 @@ async function login(input) {
 }
 
 async function getUser(id, username) {
-	const USUARIO_INEXISTENTE = 'El usuario no existe';
+	const USER_NOT_FOUND = 'User does not exist';
 	let user = null;
 	if (id) user = await User.findById(id);
 	if (username) user = await User.findOne({ username });
-	if (!user) errorMsg(USUARIO_INEXISTENTE);
+	if (!user) errorMsg(USER_NOT_FOUND);
 
 	return user;
 }
@@ -120,18 +120,18 @@ async function updateLanguage(input, ctx) {
 async function updateUser(input, ctx) {
 	const { id } = ctx.user;
 	try {
-		// Codigo de Actualizacion de la password del usuario
+    // Updating User password
 		if (input.currentPassword && input.newPassword) {
 			const userFound = await User.findById(id);
 			const passwordSuccess = await bcryptjs.compare(input.currentPassword, userFound.password);
-			if (!passwordSuccess) throw new Error('Password incorrecto');
+			if (!passwordSuccess) throw new Error('Password incorrect');
 			const salt = await bcryptjs.genSaltSync(10);
 			const newPasswordCrypt = await bcryptjs.hash(input.newPassword, salt);
 
-			// Actualizamos en la base de datos
+      // Updating data base
 			await User.findByIdAndUpdate(id, { password: newPasswordCrypt });
 		} else {
-			// Actualizacion de los demas datos del usuario
+      // Update of the rest user's data
 			await User.findByIdAndUpdate(id, input);
 		}
 		return true;

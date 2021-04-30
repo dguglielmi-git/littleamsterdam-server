@@ -16,7 +16,6 @@ function addComment(input, ctx) {
 
 async function getComments(idPublication) {
   const result = await Comment.find({ idPublication }).populate("idUser");
-
   return result;
 }
 

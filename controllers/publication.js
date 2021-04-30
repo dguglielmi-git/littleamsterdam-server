@@ -36,7 +36,7 @@ async function publish(file, album, ctx) {
 async function getPublications(username, idAlbum) {
   const user = await User.findOne({ username });
 
-  if (!user) throw new Error("Usuario no encontrado.");
+  if (!user) throw new Error("User not found.");
 
   if (idAlbum) {
     const publications = await Publication.find()
