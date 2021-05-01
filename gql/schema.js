@@ -110,6 +110,7 @@ const typeDefs = gql`
 
 		# Comment
 		getComments(idPublication: ID!): [Comment]
+		countComments(idPublication: ID!): Int
 
 		# Album
 		getAlbums(id: ID): [Album]
