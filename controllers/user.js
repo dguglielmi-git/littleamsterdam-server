@@ -120,7 +120,7 @@ async function updateLanguage(input, ctx) {
 async function updateUser(input, ctx) {
 	const { id } = ctx.user;
 	try {
-    // Updating User password
+		// Updating User password
 		if (input.currentPassword && input.newPassword) {
 			const userFound = await User.findById(id);
 			const passwordSuccess = await bcryptjs.compare(input.currentPassword, userFound.password);
@@ -128,10 +128,10 @@ async function updateUser(input, ctx) {
 			const salt = await bcryptjs.genSaltSync(10);
 			const newPasswordCrypt = await bcryptjs.hash(input.newPassword, salt);
 
-      // Updating data base
+			// Updating data base
 			await User.findByIdAndUpdate(id, { password: newPasswordCrypt });
 		} else {
-      // Update of the rest user's data
+			// Update of the rest user's data
 			await User.findByIdAndUpdate(id, input);
 		}
 		return true;

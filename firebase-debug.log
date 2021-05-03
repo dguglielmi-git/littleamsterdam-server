@@ -1,0 +1,25 @@
+[debug] [2021-05-03T17:45:36.396Z] ----------------------------------------------------------------------
+[debug] [2021-05-03T17:45:36.399Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\dany_\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-05-03T17:45:36.400Z] CLI Version:   9.10.0
+[debug] [2021-05-03T17:45:36.400Z] Platform:      win32
+[debug] [2021-05-03T17:45:36.400Z] Node Version:  v12.20.1
+[debug] [2021-05-03T17:45:36.401Z] Time:          Mon May 03 2021 14:45:36 GMT-0300 (GMT-03:00)
+[debug] [2021-05-03T17:45:36.401Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-05-03T17:45:36.410Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-05-03T17:45:36.410Z] > authorizing via signed-in user (dguglielmi.asm@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Dany\code\reactjs\littleamsterdam-server
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+
