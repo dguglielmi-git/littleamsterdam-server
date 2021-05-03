@@ -28,7 +28,7 @@ const resolvers = {
 		// Comments
 		getComments: (_, { idPublication }) => commentController.getComments(idPublication),
 		countComments: (_, { idPublication }) => commentController.countComments(idPublication),
-    
+
 		// Like
 		isLike: (_, { idPublication }, ctx) => likeController.isLike(idPublication, ctx),
 		countLikes: (_, { idPublication }) => likeController.countLikes(idPublication),
@@ -61,6 +61,7 @@ const resolvers = {
 
 		// Publish
 		publish: (_, { file, album }, ctx) => publicationController.publish(file, album, ctx),
+		deletePublication: (_, { idPublication }) => publicationController.deletePublication(idPublication),
 
 		// Comment
 		addComment: (_, { input }, ctx) => commentController.addComment(input, ctx),

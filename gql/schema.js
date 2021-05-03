@@ -144,6 +144,7 @@ const typeDefs = gql`
 
 		#Publish
 		publish(file: Upload, album: String): Publish
+		deletePublication(idPublication: ID!): Boolean
 
 		# Comment
 		addComment(input: CommentInput): Comment
