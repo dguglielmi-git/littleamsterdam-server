@@ -34,7 +34,7 @@ function server() {
     },
   });
 
-  serverApollo.listen().then(({ url }) => {
+  serverApollo.listen(4000,'172.31.31.96').then(({ url }) => {
     process.on("SIGINT", shutdown);
     process.on("SIGTERM", shutdown);
     process.on("SIGHUP", shutdown);
