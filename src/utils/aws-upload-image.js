@@ -7,14 +7,10 @@ let config = require('../../env.json');
 if (Object.keys(functions.config()).length) {
 	config = functions.config();
 }
-/*
+
 const ID = process.env.AWS_ID;
 const SECRET = process.env.AWS_SECRET;
 const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
-*/
-const ID = config.service.aws_id;
-const SECRET = config.service.aws_secret;
-const BUCKET_NAME = config.service.aws_bucket_name;
 
 const s3 = new AWS.S3({
 	accessKeyId: ID,

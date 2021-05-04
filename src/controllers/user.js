@@ -65,7 +65,7 @@ async function login(input) {
 	if (!passwordSuccess) errorMsg(PASSWORD_ERROR);
 
 	return {
-		token: createToken(userFound, config.service.secret_key, '24h'),
+		token: createToken(userFound, process.env.SECRET_KEY, '24h'),
 	};
 }
 
