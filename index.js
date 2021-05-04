@@ -3,6 +3,13 @@ const jwt = require('jsonwebtoken');
 const { ApolloServer } = require('apollo-server');
 const typeDefs = require('./gql/schema');
 const resolvers = require('./gql/resolver');
+const functions = require('firebase-functions');
+
+let config = require('./env.json');
+
+if (Object.keys(functions.config()).length) {
+	config = functions.config();
+}
 
 function shutdown() {
 	process.exit(0);
@@ -16,7 +23,7 @@ function server() {
 			const token = req.headers.authorization;
 			if (token) {
 				try {
-					const user = jwt.verify(token.replace('Bearer ', ''), process.env.SECRET_KEY);
+					const user = jwt.verify(token.replace('Bearer ', ''), config.service.secret_key);
 					return {
 						user,
 					};
@@ -45,7 +52,7 @@ function star() {
 }
 
 mongoose.connect(
-	process.env.MONGODB,
+	config.service.mongodb,
 	{
 		useNewUrlParser: true,
 		useUnifiedTopology: true,

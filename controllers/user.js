@@ -2,6 +2,13 @@ const User = require('../models/user');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const awsUploadImage = require('../utils/aws-upload-image');
+const functions = require('firebase-functions');
+
+let config = require('../env.json');
+
+if (Object.keys(functions.config()).length) {
+	config = functions.config();
+}
 
 function createToken(user, SECRET_KEY, expiresIn) {
 	const { id, name, email, username } = user;
@@ -58,7 +65,7 @@ async function login(input) {
 	if (!passwordSuccess) errorMsg(PASSWORD_ERROR);
 
 	return {
-		token: createToken(userFound, process.env.SECRET_KEY, '24h'),
+		token: createToken(userFound, config.service.secret_key, '24h'),
 	};
 }
 
