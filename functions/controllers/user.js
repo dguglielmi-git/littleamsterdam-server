@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const awsUploadImage = require('../utils/aws-upload-image');
 const functions = require('firebase-functions');
 
-let config = require('../env.json');
+let config = require('../../env.json');
 
 if (Object.keys(functions.config()).length) {
 	config = functions.config();

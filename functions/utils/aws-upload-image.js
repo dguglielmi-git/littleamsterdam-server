@@ -2,7 +2,7 @@ require('dotenv').config({ path: '.env' });
 const AWS = require('aws-sdk');
 const functions = require('firebase-functions');
 
-let config = require('../env.json');
+let config = require('../../env.json');
 
 if (Object.keys(functions.config()).length) {
 	config = functions.config();
