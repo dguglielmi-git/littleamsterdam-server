@@ -1,3 +1,7 @@
 /node_modules
 *.env
+<<<<<<< HEAD
 env.json
+=======
+*.pem
+>>>>>>> cadc848d3cd38aa0f0f380b3680bc3bd82f7a45a
