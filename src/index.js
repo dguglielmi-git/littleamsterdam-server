@@ -10,6 +10,7 @@ function shutdown() {
 
 function server() {
 	const serverApollo = new ApolloServer({
+		cors: true,
 		typeDefs,
 		resolvers,
 		context: ({ req }) => {
@@ -27,6 +28,7 @@ function server() {
 			}
 		},
 	});
+
 
 	serverApollo.listen().then(({ url }) => {
 		process.on('SIGINT', shutdown);
